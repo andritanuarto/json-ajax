@@ -1,0 +1,44 @@
+<!-- mylist.json -->
+{ 
+  "u1":{ "user":"John", "age":22, "country":"United States" },
+  "u2":{ "user":"Will", "age":27, "country":"United Kingdom" },
+  "u3":{ "user":"Abiel", "age":19, "country":"Mexico" }, 
+  "u4":{ "user":"Rick", "age":34, "country":"Panama" },
+  "u5":{ "user":"Susan", "age":23, "country":"Germany" },
+  "u6":{ "user":"Amy", "age":43, "country":"France" },
+  "u7":{ "user":"Pete", "age":18, "country":"Italy" },
+  "u8":{ "user":"Chris", "age":25, "country":"United States" },
+  "u9":{ "user":"Louis", "age":31, "country":"Spain" },
+  "u10":{ "user":"Emily", "age":38, "country":"Uraguay" },
+  "u11":{ "user":"Shawn", "age":52, "country":"Chile" },
+  "u12":{ "user":"Greg", "age":24, "country":"Romania" }
+}
+<!-- JSON_tutorial_2.html -->
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+function ajax_get_json(){
+var results = document.getElementById("results");
+    var hr = new XMLHttpRequest();
+    hr.open("GET", "mylist.json", true);
+    hr.setRequestHeader("Content-type", "application/json", true);
+    hr.onreadystatechange = function() {
+    if(hr.readyState == 4 && hr.status == 200) {
+    var data = JSON.parse(hr.responseText);
+results.innerHTML = "";
+for(var obj in data){
+results.innerHTML += data[obj].user+" is "+data[obj].age+" and lives in "+data[obj].country+"<hr />";
+}
+    }
+    }
+    hr.send(null);
+    results.innerHTML = "requesting...";
+}
+</script>
+</head>
+<body>
+<div id="results"></div>
+<script type="text/javascript">ajax_get_json();</script>
+</body>
+</html>
